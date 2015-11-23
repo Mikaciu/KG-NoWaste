@@ -84,7 +84,12 @@ oRatios = { // YEAHHHHHHH
 		10
 	],
 	// gold
-	// oil
+	'oil': [
+		0.999,
+		'workshop',
+		'kerosene',
+		1
+	],
 	'manpower': [
 		0.999,
 		'manpower',
