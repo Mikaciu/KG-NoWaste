@@ -31,7 +31,7 @@ TabManager.prototype = {
             }
         }
 
-        this.tab ? this.render() : console.log('unable to find tab ' + name);
+        this.tab ? this.render() : console.error('unable to find tab ' + name);
         this.refreshTabs();
     },
     revertTab: function(){
@@ -41,7 +41,9 @@ TabManager.prototype = {
     // to make sure we find all the new buttons
     refreshTabs: function(){
         for(var i = 0; i<gamePage.tabs.length;i++) {
-            gamePage.tabs[i].render();
+			if(! /(stats|achievements)/i.test(gamePage.tabs[i].tabName)){
+				gamePage.tabs[i].render();
+			}
         }
     }
 };
@@ -139,7 +141,7 @@ oThresholds = {
 
 function handle_resource(oConfig, sResource){
 	if(! $('#auto-' + sResource).prop("checked")){
-		console.log('#auto-' + sResource + " not checked");
+		console.info('#auto-' + sResource + " not checked");
 		return;
 	}
 
