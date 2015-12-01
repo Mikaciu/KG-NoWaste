@@ -217,8 +217,6 @@ function magic() {
             handle_resource(oThresholds, sResource);
         }
     }
-	
-	// TODO : create on/off switches
 }
 window.setInterval(magic, 1000);
 
