@@ -124,6 +124,12 @@ oThresholds = {
 		'parchment',
 		10
 	],
+    'parchment': [
+        2500,
+        'festival',
+        '',
+        'Auto organized festival !'
+    ],
 	'beam': [
 		20000,
 		'workshop',
@@ -176,6 +182,15 @@ function handle_resource(oConfig, sResource){
             }
 
             oTabManager.revertTab();
+            break;
+        case 'festival':
+            if(gamePage.calendar.festivalDays > 0 || ! gamePage.science.get("drama").researched){
+                return;
+            }
+            
+            gamePage.villageTab.festivalBtn.onClick();
+            gamePage.msg(oConfig[sResource][2]);
+            
             break;
         default:
             eval(oConfig[sResource][1]);
