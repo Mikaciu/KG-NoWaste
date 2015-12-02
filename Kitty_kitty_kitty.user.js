@@ -92,6 +92,13 @@ oRatios = { // YEAHHHHHHH
 		'kerosene',
 		1
 	],
+    // uranium
+    'unobtainium' : [
+        0.999,
+        'workshop',
+        'eludium',
+        1
+    ],
 	'manpower': [
 		0.999,
 		'manpower',
@@ -188,8 +195,11 @@ function handle_resource(oConfig, sResource){
                 return;
             }
             
-            gamePage.villageTab.festivalBtn.onClick();
-            gamePage.msg(oConfig[sResource][2]);
+            // check resource availability
+            if(gamePage.resPool.hasRes(gamePage.villageTab.festivalBtn.prices)){
+                gamePage.villageTab.festivalBtn.onClick();
+                gamePage.msg(oConfig[sResource][3]);
+            }
             
             break;
         default:
@@ -220,8 +230,7 @@ function magic() {
 }
 window.setInterval(magic, 1000);
 
-// $('#rightColumn').width('33%')
-$('#rightColumn').after('<div id="switchescolumn" style="width:200px;position:absolute;right:20px;top:20px;"></div>');
+$('#rightColumn').after('<div id="switchescolumn" style="width:250px;position:absolute;right:20px;top:20px;"></div>');
 $('#switchescolumn').append('<ul>')
 $('#switchescolumn').append('<li><label for="auto-all">Auto all</label><input type="checkbox" id="auto-all" onclick="$(\'#switchescolumn input\').each(function(o){$(this).prop(\'checked\', $(\'#auto-all\').prop(\'checked\'));});" /></li>');
 for (sResource in oThresholds) {
@@ -231,3 +240,6 @@ for (sResource in oRatios) {
 	$('#switchescolumn').append('<li><label for="auto-' + sResource + '">Auto ' + sResource + ' usage</label><input type="checkbox" id="auto-' + sResource + '" /></li>')
 }
 $('#switchescolumn').append('</ul>')
+
+gamePage.ui.zoomDown();
+gamePage.ui.zoomDown();
