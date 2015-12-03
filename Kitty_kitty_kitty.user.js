@@ -196,10 +196,12 @@ function handle_resource(oConfig, sResource){
             }
             
             // check resource availability
+            var oTabManager = new TabManager('Small village');
             if(gamePage.resPool.hasRes(gamePage.villageTab.festivalBtn.prices)){
                 gamePage.villageTab.festivalBtn.onClick();
                 gamePage.msg(oConfig[sResource][3]);
             }
+            oTabManager.revertTab();
             
             break;
         default:
